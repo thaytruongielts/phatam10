@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Giảng Tương Tác: Luyện Phát Âm Tiếng Anh</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .lesson-container {
+            background-color: #ffffff;
+            border-radius: 1.5rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            width: 100%;
+            max-width: 900px;
+            margin-top: 20px;
+        }
+        .slide-title {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2d3748;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+        .slide-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #4a5568;
+            margin-bottom: 1.5rem;
+        }
+        .interactive-section {
+            background-color: #f7fafc;
+            border: 1px solid #e2e8f0;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            margin-top: 1.5rem;
+            line-height: 1.8;
+        }
+        .option-label {
+            display: block;
+            background-color: #edf2f7;
+            padding: 0.8rem 1.25rem;
+            margin-bottom: 0.75rem;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease;
+            font-size: 1rem;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+        }
+        .option-label:hover {
+            background-color: #e2e8f0;
+            transform: translateY(-2px);
+        }
+        .option-input:checked + .option-label {
+            background-color: #63b3ed;
+            color: white;
+            border-color: #4299e1;
+            box-shadow: 0 4px 6px rgba(66, 153, 225, 0.3);
+        }
+        .option-input {
+            display: none;
+        }
+        .button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .button:hover:enabled {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+        .button:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        .quiz-check-button {
+            background-color: #dc2626;
+            color: white;
+        }
+        .quiz-check-button:hover:enabled {
+            background-color: #b91c1c;
+        }
+        .lesson-nav-button {
+            background-color: #48bb78;
+            color: white;
+        }
+        .lesson-nav-button:hover:enabled {
+            background-color: #38a169;
+        }
+        .feedback-message {
+            margin-top: 1rem;
+            padding: 0.8rem;
+            border-radius: 0.75rem;
+            font-weight: 600;
+            text-align: center;
+            font-size: 1rem;
+        }
+        .feedback-correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .feedback-incorrect {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .final-message {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #2d3748;
+            text-align: center;
+            margin-top: 2rem;
+        }
+        .restart-button {
+            background-color: #f6ad55;
+            color: white;
+            margin-top: 1rem;
+        }
+        .restart-button:hover:enabled {
+            background-color: #ed8936;
+        }
+    </style>
+</head>
+<body>
+    <div class="lesson-container">
+        <h1 class="text-3xl font-extrabold text-center text-gray-800 mb-6">Bài Giảng Tương Tác: Luyện Phát Âm Tiếng Anh</h1>
+
+        <div id="lesson-slides">
+            <!-- Slide 1: Giới thiệu -->
+            <div id="slide-0" class="lesson-slide">
+                <h2 class="slide-title">Slide 1: Giới thiệu</h2>
+                <p class="slide-content">Chào mừng các em đến với bài giảng chuyên đề phát âm tiếng Anh, được thiết kế để ôn tập cho kỳ thi tuyển sinh vào lớp 10.</p>
+                <p class="slide-content">Chúng ta sẽ cùng ôn lại các nguyên âm, phụ âm và luyện tập với các câu hỏi trắc nghiệm để phân biệt cách phát âm khác nhau.</p>
+            </div>
+
+            <!-- Slide 2: Nguyên âm -->
+            <div id="slide-1" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 2: Nguyên âm (Vowels)</h2>
+                <div class="interactive-section">
+                    <p class="font-bold text-lg mb-2">1. Nguyên âm ngắn (Short vowels)</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>/ʌ/: ago, mother, together</li>
+                        <li>/i/: hit, bit, sit</li>
+                        <li>/æ/: cat, chat, man</li>
+                        <li>/ɒ/: got, job, hospital</li>
+                        <li>/ʊ/: put, should, foot</li>
+                        <li>/e/: bed, send, tent</li>
+                    </ul>
+                    <p class="font-bold text-lg mt-4 mb-2">2. Nguyên âm dài (Long vowels)</p>
+                    <ul class="list-disc list-inside ml-4">
+                        <li>/i:/: meet, beat, heat</li>
+                        <li>/ɑ:/: father, star, car</li>
+                        <li>/ɜ:/: bird, shirt, early</li>
+                        <li>/u:/: school, food, moon</li>
+                        <li>/ɔ:/: sport, more, store</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 3: Nguyên âm đôi -->
+            <div id="slide-2" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 3: Nguyên âm đôi (Diphthongs)</h2>
+                <div class="interactive-section">
+                    <ul class="list-disc list-inside ml-4">
+                        <li>/ai/: buy, sky, high</li>
+                        <li>/ɔi/: boy, enjoy, toy</li>
+                        <li>/ei/: day, baby, stay</li>
+                        <li>/ou/: no, go, so</li>
+                        <li>/au/: now, sound, cow</li>
+                        <li>/uə/: poor, sure, tour</li>
+                        <li>/eə/: air, care, share</li>
+                        <li>/iə/: near, tear, cheer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 4: Phụ âm 1 -->
+            <div id="slide-3" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 4: Phụ âm (Consonants) - Phần 1</h2>
+                <div class="interactive-section">
+                    <ul class="list-disc list-inside ml-4">
+                        <li>/b/: bag, baby, comb</li>
+                        <li>/p/: pupil, pay, stop</li>
+                        <li>/d/: dog, daddy, dead</li>
+                        <li>/t/: tea, teach</li>
+                        <li>/m/: mother, map, come</li>
+                        <li>/k/: kiss, key</li>
+                        <li>/n/: many, none, news</li>
+                        <li>/g/: get, game, go</li>
+                        <li>/l/: love, lucky, travel</li>
+                        <li>/s/: see, summer</li>
+                        <li>/r/: river, restaurant</li>
+                        <li>/z/: zoo, visit</li>
+                        <li>/f/: fall, laugh, fiction</li>
+                        <li>/h/: hat, honey</li>
+                        <li>/v/: visit, van</li>
+                        <li>/w/: wet, why</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Slide 5: Phụ âm 2 -->
+            <div id="slide-4" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 5: Phụ âm (Consonants) - Phần 2</h2>
+                <div class="interactive-section">
+                    <ul class="list-disc list-inside ml-4">
+                        <li>/θ/: thin, thick, something, birth</li>
+                        <li>/ð/: mother, with, this</li>
+                        <li>/ʃ/: she, sugar, sure</li>
+                        <li>/ʒ/: vision</li>
+                        <li>/tʃ/: children, chicken, watch</li>
+                        <li>/dʒ/: village, jam, generous</li>
+                        <li>/j/: yes, yellow</li>
+                        <li>/ŋ/: thank, sing</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 6: Bài tập 1 -->
+            <div id="slide-5" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 6: Bài tập 1</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 1:</p>
+                    <div id="quiz-1-options" class="mb-4">
+                        <input type="radio" name="quiz1" id="q1o1" value="A" class="option-input"><label for="q1o1" class="option-label">A. h<u>ea</u>d</label>
+                        <input type="radio" name="quiz1" id="q1o2" value="B" class="option-input"><label for="q1o2" class="option-label">B. pl<u>ea</u>se</label>
+                        <input type="radio" name="quiz1" id="q1o3" value="C" class="option-input"><label for="q1o3" class="option-label">C. h<u>ea</u>vy</label>
+                        <input type="radio" name="quiz1" id="q1o4" value="D" class="option-input"><label for="q1o4" class="option-label">D. m<u>ea</u>sure</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="1" data-answer="B">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-1"></div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Bài tập 2 -->
+            <div id="slide-6" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 7: Bài tập 2</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 2:</p>
+                    <div id="quiz-2-options" class="mb-4">
+                        <input type="radio" name="quiz2" id="q2o1" value="A" class="option-input"><label for="q2o1" class="option-label">A. n<u>o</u>te</label>
+                        <input type="radio" name="quiz2" id="q2o2" value="B" class="option-input"><label for="q2o2" class="option-label">B. gl<u>o</u>ves</label>
+                        <input type="radio" name="quiz2" id="q2o3" value="C" class="option-input"><label for="q2o3" class="option-label">C. s<u>o</u>me</label>
+                        <input type="radio" name="quiz2" id="q2o4" value="D" class="option-input"><label for="q2o4" class="option-label">D. <u>o</u>ther</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="2" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-2"></div>
+                </div>
+            </div>
+            
+            <!-- Slide 8: Bài tập 3 -->
+            <div id="slide-7" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 8: Bài tập 3</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 3:</p>
+                    <div id="quiz-3-options" class="mb-4">
+                        <input type="radio" name="quiz3" id="q3o1" value="A" class="option-input"><label for="q3o1" class="option-label">A. n<u>ow</u></label>
+                        <input type="radio" name="quiz3" id="q3o2" value="B" class="option-input"><label for="q3o2" class="option-label">B. h<u>ow</u></label>
+                        <input type="radio" name="quiz3" id="q3o3" value="C" class="option-input"><label for="q3o3" class="option-label">C. bl<u>ow</u></label>
+                        <input type="radio" name="quiz3" id="q3o4" value="D" class="option-input"><label for="q3o4" class="option-label">D. am<u>ou</u>nt</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="3" data-answer="C">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-3"></div>
+                </div>
+            </div>
+
+            <!-- Slide 9: Bài tập 4 -->
+            <div id="slide-8" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 9: Bài tập 4</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 4:</p>
+                    <div id="quiz-4-options" class="mb-4">
+                        <input type="radio" name="quiz4" id="q4o1" value="A" class="option-input"><label for="q4o1" class="option-label">A. d<u>ea</u>r</label>
+                        <input type="radio" name="quiz4" id="q4o2" value="B" class="option-input"><label for="q4o2" class="option-label">B. y<u>ea</u>r</label>
+                        <input type="radio" name="quiz4" id="q4o3" value="C" class="option-input"><label for="q4o3" class="option-label">C. w<u>ea</u>r</label>
+                        <input type="radio" name="quiz4" id="q4o4" value="D" class="option-input"><label for="q4o4" class="option-label">D. disapp<u>ea</u>r</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="4" data-answer="C">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-4"></div>
+                </div>
+            </div>
+
+            <!-- Slide 10: Bài tập 5 -->
+            <div id="slide-9" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 10: Bài tập 5</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 5:</p>
+                    <div id="quiz-5-options" class="mb-4">
+                        <input type="radio" name="quiz5" id="q5o1" value="A" class="option-input"><label for="q5o1" class="option-label">A. h<u>a</u>te</label>
+                        <input type="radio" name="quiz5" id="q5o2" value="B" class="option-input"><label for="q5o2" class="option-label">B. p<u>a</u>n</label>
+                        <input type="radio" name="quiz5" id="q5o3" value="C" class="option-input"><label for="q5o3" class="option-label">C. c<u>a</u>rrot</label>
+                        <input type="radio" name="quiz5" id="q5o4" value="D" class="option-input"><label for="q5o4" class="option-label">D. m<u>a</u>tter</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="5" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-5"></div>
+                </div>
+            </div>
+            
+            <!-- Slide 11: Bài tập 6 -->
+            <div id="slide-10" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 11: Bài tập 6</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 6:</p>
+                    <div id="quiz-6-options" class="mb-4">
+                        <input type="radio" name="quiz6" id="q6o1" value="A" class="option-input"><label for="q6o1" class="option-label">A. improv<u>ed</u></label>
+                        <input type="radio" name="quiz6" id="q6o2" value="B" class="option-input"><label for="q6o2" class="option-label">B. return<u>ed</u></label>
+                        <input type="radio" name="quiz6" id="q6o3" value="C" class="option-input"><label for="q6o3" class="option-label">C. arriv<u>ed</u></label>
+                        <input type="radio" name="quiz6" id="q6o4" value="D" class="option-input"><label for="q6o4" class="option-label">D. stopp<u>ed</u></label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="6" data-answer="D">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-6"></div>
+                </div>
+            </div>
+
+            <!-- Slide 12: Bài tập 7 -->
+            <div id="slide-11" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 12: Bài tập 7</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 7:</p>
+                    <div id="quiz-7-options" class="mb-4">
+                        <input type="radio" name="quiz7" id="q7o1" value="A" class="option-input"><label for="q7o1" class="option-label">A. n<u>er</u>vous</label>
+                        <input type="radio" name="quiz7" id="q7o2" value="B" class="option-input"><label for="q7o2" class="option-label">B. sc<u>ou</u>t</label>
+                        <input type="radio" name="quiz7" id="q7o3" value="C" class="option-input"><label for="q7o3" class="option-label">C. h<u>ou</u>sehold</label>
+                        <input type="radio" name="quiz7" id="q7o4" value="D" class="option-input"><label for="q7o4" class="option-label">D. m<u>ou</u>se</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="7" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-7"></div>
+                </div>
+            </div>
+
+            <!-- Slide 13: Bài tập 8 -->
+            <div id="slide-12" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 13: Bài tập 8</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 8:</p>
+                    <div id="quiz-8-options" class="mb-4">
+                        <input type="radio" name="quiz8" id="q8o1" value="A" class="option-input"><label for="q8o1" class="option-label">A. fav<u>o</u>rite</label>
+                        <input type="radio" name="quiz8" id="q8o2" value="B" class="option-input"><label for="q8o2" class="option-label">B. find</label>
+                        <input type="radio" name="quiz8" id="q8o3" value="C" class="option-input"><label for="q8o3" class="option-label">C. outs<u>i</u>de</label>
+                        <input type="radio" name="quiz8" id="q8o4" value="D" class="option-input"><label for="q8o4" class="option-label">D. libr<u>a</u>ry</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="8" data-answer="D">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-8"></div>
+                </div>
+            </div>
+
+            <!-- Slide 14: Bài tập 9 -->
+            <div id="slide-13" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 14: Bài tập 9</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 9:</p>
+                    <div id="quiz-9-options" class="mb-4">
+                        <input type="radio" name="quiz9" id="q9o1" value="A" class="option-input"><label for="q9o1" class="option-label">A. l<u>a</u>st</label>
+                        <input type="radio" name="quiz9" id="q9o2" value="B" class="option-input"><label for="q9o2" class="option-label">B. t<u>a</u>ste</label>
+                        <input type="radio" name="quiz9" id="q9o3" value="C" class="option-input"><label for="q9o3" class="option-label">C. f<u>a</u>st</label>
+                        <input type="radio" name="quiz9" id="q9o4" value="D" class="option-input"><label for="q9o4" class="option-label">D. t<u>a</u>sk</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="9" data-answer="B">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-9"></div>
+                </div>
+            </div>
+
+            <!-- Slide 15: Bài tập 10 -->
+            <div id="slide-14" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 15: Bài tập 10</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 10:</p>
+                    <div id="quiz-10-options" class="mb-4">
+                        <input type="radio" name="quiz10" id="q10o1" value="A" class="option-input"><label for="q10o1" class="option-label">A. f<u>u</u>ture</label>
+                        <input type="radio" name="quiz10" id="q10o2" value="B" class="option-input"><label for="q10o2" class="option-label">B. s<u>u</u>mmer</label>
+                        <input type="radio" name="quiz10" id="q10o3" value="C" class="option-input"><label for="q10o3" class="option-label">C. n<u>u</u>mber</label>
+                        <input type="radio" name="quiz10" id="q10o4" value="D" class="option-input"><label for="q10o4" class="option-label">D. dr<u>u</u>mmer</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="10" data-answer="A">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-10"></div>
+                </div>
+            </div>
+            
+            <!-- Slide 16: Bài tập 11 -->
+            <div id="slide-15" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 16: Bài tập 11</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 11:</p>
+                    <div id="quiz-11-options" class="mb-4">
+                        <input type="radio" name="quiz11" id="q11o1" value="A" class="option-input"><label for="q11o1" class="option-label">A. t<u>i</u>me</label>
+                        <input type="radio" name="quiz11" id="q11o2" value="B" class="option-input"><label for="q11o2" class="option-label">B. k<u>i</u>nd</label>
+                        <input type="radio" name="quiz11" id="q11o3" value="C" class="option-input"><label for="q11o3" class="option-label">C. b<u>i</u>d</label>
+                        <input type="radio" name="quiz11" id="q11o4" value="D" class="option-input"><label for="q11o4" class="option-label">D. n<u>i</u>ce</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="11" data-answer="C">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-11"></div>
+                </div>
+            </div>
+
+            <!-- Slide 17: Bài tập 12 -->
+            <div id="slide-16" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 17: Bài tập 12</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 12:</p>
+                    <div id="quiz-12-options" class="mb-4">
+                        <input type="radio" name="quiz12" id="q12o1" value="A" class="option-input"><label for="q12o1" class="option-label">A. h<u>a</u>rd</label>
+                        <input type="radio" name="quiz12" id="q12o2" value="B" class="option-input"><label for="q12o2" class="option-label">B. c<u>a</u>rry</label>
+                        <input type="radio" name="quiz12" id="q12o3" value="C" class="option-input"><label for="q12o3" class="option-label">C. c<u>a</u>rd</label>
+                        <input type="radio" name="quiz12" id="q12o4" value="D" class="option-input"><label for="q12o4" class="option-label">D. y<u>a</u>rd</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="12" data-answer="B">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-12"></div>
+                </div>
+            </div>
+
+            <!-- Slide 18: Bài tập 13 -->
+            <div id="slide-17" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 18: Bài tập 13</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 13:</p>
+                    <div id="quiz-13-options" class="mb-4">
+                        <input type="radio" name="quiz13" id="q13o1" value="A" class="option-input"><label for="q13o1" class="option-label">A. m<u>y</u></label>
+                        <input type="radio" name="quiz13" id="q13o2" value="B" class="option-input"><label for="q13o2" class="option-label">B. bab<u>y</u></label>
+                        <input type="radio" name="quiz13" id="q13o3" value="C" class="option-input"><label for="q13o3" class="option-label">C. sp<u>y</u></label>
+                        <input type="radio" name="quiz13" id="q13o4" value="D" class="option-input"><label for="q13o4" class="option-label">D. cr<u>y</u></label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="13" data-answer="B">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-13"></div>
+                </div>
+            </div>
+            
+            <!-- Slide 19: Bài tập 14 -->
+            <div id="slide-18" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 19: Bài tập 14</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 14:</p>
+                    <div id="quiz-14-options" class="mb-4">
+                        <input type="radio" name="quiz14" id="q14o1" value="A" class="option-input"><label for="q14o1" class="option-label">A. w<u>e</u>ll</label>
+                        <input type="radio" name="quiz14" id="q14o2" value="B" class="option-input"><label for="q14o2" class="option-label">B. g<u>e</u>t</label>
+                        <input type="radio" name="quiz14" id="q14o3" value="C" class="option-input"><label for="q14o3" class="option-label">C. s<u>e</u>nd</label>
+                        <input type="radio" name="quiz14" id="q14o4" value="D" class="option-input"><label for="q14o4" class="option-label">D. pr<u>e</u>tty</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="14" data-answer="D">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-14"></div>
+                </div>
+            </div>
+
+            <!-- Slide 20: Bài tập 15 -->
+            <div id="slide-19" class="lesson-slide hidden">
+                <h2 class="slide-title">Slide 20: Bài tập 15</h2>
+                <p class="slide-content font-bold text-blue-800">Chọn từ có phần gạch chân được phát âm khác so với các từ còn lại.</p>
+                <div class="interactive-section mt-8 p-4 bg-blue-50 rounded-lg border border-blue-200">
+                    <p class="font-semibold text-blue-800 mb-4">Câu hỏi 15:</p>
+                    <div id="quiz-15-options" class="mb-4">
+                        <input type="radio" name="quiz15" id="q15o1" value="A" class="option-input"><label for="q15o1" class="option-label">A. w<u>ea</u>ther</label>
+                        <input type="radio" name="quiz15" id="q15o2" value="B" class="option-input"><label for="q15o2" class="option-label">B. r<u>ea</u>dy</label>
+                        <input type="radio" name="quiz15" id="q15o3" value="C" class="option-input"><label for="q15o3" class="option-label">C. m<u>ea</u>n</label>
+                        <input type="radio" name="quiz15" id="q15o4" value="D" class="option-input"><label for="q15o4" class="option-label">D. h<u>ea</u>d</label>
+                    </div>
+                    <div class="flex justify-center gap-4">
+                        <button class="button quiz-check-button" data-quiz-id="15" data-answer="C">Kiểm Tra</button>
+                    </div>
+                    <div class="feedback-message hidden" id="feedback-15"></div>
+                </div>
+            </div>
+
+            <!-- Slide 21: Tổng kết và Lời khuyên -->
+            <div id="final-screen" class="lesson-slide hidden">
+                <h2 class="slide-title">Hoàn Thành Bài Giảng!</h2>
+                <p class="final-message">🎉 Chúc mừng! Bạn đã hoàn thành 15 câu hỏi luyện tập Phát Âm.</p>
+                <button id="restart-lesson-button" class="button restart-button w-full mt-8">Luyện tập lại</button>
+            </div>
+        </div>
+
+        <div class="flex justify-between items-center mt-8">
+            <button id="prev-slide-button" class="button lesson-nav-button" disabled>Slide Trước</button>
+            <span id="slide-indicator" class="text-lg font-semibold text-gray-700">Slide 1 / 15</span>
+            <button id="next-slide-button" class="button lesson-nav-button">Slide Tiếp Theo</button>
+        </div>
+    </div>
+
+    <script>
+        let currentSlideIndex = 0;
+        const slides = document.querySelectorAll('.lesson-slide');
+        const prevButton = document.getElementById('prev-slide-button');
+        const nextButton = document.getElementById('next-slide-button');
+        const slideIndicator = document.getElementById('slide-indicator');
+        const restartLessonButton = document.getElementById('restart-lesson-button');
+        const totalLessonSlides = slides.length - 1;
+
+        function showSlide(index) {
+            slides.forEach((slide, i) => {
+                slide.classList.add('hidden');
+                if (i === index) {
+                    slide.classList.remove('hidden');
+                }
+            });
+
+            prevButton.disabled = (index === 0);
+            
+            if (index < totalLessonSlides) {
+                nextButton.classList.remove('hidden');
+            } else {
+                nextButton.classList.add('hidden');
+            }
+
+            if (index < totalLessonSlides) {
+                slideIndicator.textContent = `Slide ${index + 1} / ${totalLessonSlides}`;
+            } else {
+                slideIndicator.textContent = `Hoàn thành!`;
+            }
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentSlideIndex > 0) {
+                currentSlideIndex--;
+                showSlide(currentSlideIndex);
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentSlideIndex < totalLessonSlides) {
+                currentSlideIndex++;
+                showSlide(currentSlideIndex);
+            }
+        });
+
+        restartLessonButton.addEventListener('click', () => {
+            currentSlideIndex = 0;
+            showSlide(currentSlideIndex);
+            document.querySelectorAll('.interactive-section input').forEach(input => {
+                input.disabled = false;
+                input.checked = false;
+            });
+            document.querySelectorAll('.feedback-message').forEach(feedback => {
+                feedback.classList.add('hidden');
+                feedback.textContent = '';
+                feedback.classList.remove('feedback-correct', 'feedback-incorrect');
+            });
+            document.querySelectorAll('.quiz-check-button').forEach(button => {
+                button.disabled = true;
+                button.classList.remove('hidden');
+            });
+        });
+
+        document.querySelectorAll('.quiz-check-button').forEach(button => {
+            button.addEventListener('click', (e) => {
+                const quizId = e.target.dataset.quizId;
+                const correctAnswer = e.target.dataset.answer;
+                const feedbackDiv = document.getElementById(`feedback-${quizId}`);
+                const selectedOption = document.querySelector(`input[name="quiz${quizId}"]:checked`);
+                
+                feedbackDiv.classList.remove('hidden', 'feedback-correct', 'feedback-incorrect');
+                
+                if (selectedOption && selectedOption.value === correctAnswer) {
+                    feedbackDiv.classList.add('feedback-correct');
+                    feedbackDiv.textContent = 'Chính xác! 🎉';
+                    
+                    e.target.disabled = true;
+                    setTimeout(() => {
+                        currentSlideIndex++;
+                        showSlide(currentSlideIndex);
+                    }, 1500);
+                } else {
+                    feedbackDiv.classList.add('feedback-incorrect');
+                    feedbackDiv.textContent = 'Chưa đúng, hãy thử lại!';
+                }
+            });
+        });
+
+        document.querySelectorAll('.interactive-section input[type="radio"]').forEach(input => {
+            input.addEventListener('change', (e) => {
+                const quizId = e.target.name.replace('quiz', '');
+                const checkButton = document.querySelector(`.quiz-check-button[data-quiz-id="${quizId}"]`);
+                if (checkButton) {
+                    checkButton.disabled = false;
+                }
+            });
+        });
+
+        document.querySelectorAll('.quiz-check-button').forEach(button => {
+            button.disabled = true;
+        });
+
+        showSlide(currentSlideIndex);
+    </script>
+</body>
+</html>
